@@ -1,0 +1,11 @@
+# JBOSS CONFIG with SNMP
+
+JAVA_HOME="/usr/java/jdk1.6.0_24/"
+JAVA_OPTS="-Dfile.encoding=ISO-8859-1 -Xms512m -Xmx512m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:NewSize=256m -XX:MaxNewSize=256m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n -verbose:gc -Xloggc:/export/logs/ped/gc.log -Dcom.sun.management.snmp.interface=0.0.0.0 -Dcom.sun.management.snmp.port=1163 -Dcom.sun.management.snmp.acl=true -Dcom.sun.management.snmp.acl.file=/usr/java/jre1.6.0_24/lib/management/snmp.acl -Dcom.sun.management.config.file=/usr/java/jre1.6.0_24/lib/management/management.properties"
+JAVA_USER="root"
+JBOSS_HOME="/opt/jboss-4.2.3.GA"
+JBOSS_OPTS="-g ClusterPED -Duol.log.trace.config.file=/dev/null -Djboss.bind.address=ped1.sys.srv.intranet -Djava.rmi.server.useLocalHostname=false -Djava.rmi.server.hostname=ped1.sys.srv.intranet"
+JBOSS_CONSOLE="/export/logs/ped"
+JBOSS_BIND="ped1.sys.srv.intranet"
+JBOSS_CLASSPATH=
+
