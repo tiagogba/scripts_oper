@@ -4,8 +4,8 @@ use MIME::Lite;
 my $smtp_server = "smtp.gmail.com";
 my $smtp_port   = 465;
 my $debug       = 1;
-my $user        = "tiagog85";
-my $passwd      = "qqQQ123!@#";
+my $user        = "usuario";
+my $passwd      = "senha";
 
 MIME::Lite->send('smtp', $smtp_server ,
                           Port =>$smtp_port ,
@@ -16,8 +16,8 @@ MIME::Lite->send('smtp', $smtp_server ,
                           Password  => $passwd);
 
 my $msg = MIME::Lite->new(
-        From    =>'talbuquerque@uoldiveo.com',
-        To      =>'tiagog85@gmail.com',
+        From    =>'email from',
+        To      =>'email to',
         Subject =>'This is a test',
         Data    =>"this is the body"
         );
