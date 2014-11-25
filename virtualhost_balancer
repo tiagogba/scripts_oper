@@ -1,0 +1,38 @@
+####BALANCER APACHE
+
+
+<VirtualHost teste.com.br:80>
+    ServerAdmin teste@teste.com.br
+    ServerName teste.com.br
+    ErrorLog logs/-error_log
+    CustomLog logs/access_log common
+
+ProxyPreserveHost On
+ProxyVia On
+#Contextos que serão redirecionados
+      RedirectMatch ^/app1$ /app1
+      RedirectMatch ^/app2$ /app2
+      RedirectMatch ^/app3$ /app3
+
+ProxyPass /balancer-manager !
+        ProxyPass /app1 balancer://cluster/app1
+        ProxyPassReverse /app1 balancer://cluster/app1
+
+        ProxyPass /app2 balancer://cluster/app2
+        ProxyPassReverse /app2 balancer://cluste/app2
+
+        ProxyPass /app3 balancer://cluster/app3
+        ProxyPassReverse /whitebox balancer://cluster/app3
+
+        ProxyPass / balancer://cluster/app1
+        ProxyPassReverse / balancer://cluster/app1
+
+
+    <Proxy balancer://cluster>
+        BalancerMember http://IP_DO_SVD1:8080 route=instancia loadfactor=1
+        BalancerMember http://IP_DO_SVD2:8181 route=instancia loadfactor=1
+        ProxySet lbmethod=byrequests
+        ProxySet stickysession=JSESSIONID
+    </Proxy>
+
+</VirtualHost>
